@@ -15,7 +15,7 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
     $FOOTER = $('footer');
 
 // Sidebar
-function init_sidebar() {
+$(document).ready(function() {
     // TODO: This is some kind of easy fix, maybe we can improve this
     var setContentHeight = function () {
         // reset height
@@ -32,41 +32,31 @@ function init_sidebar() {
         $RIGHT_COL.css('min-height', contentHeight);
     };
 
-    var openUpMenu = function () {
-        $SIDEBAR_MENU.find('li').removeClass('active active-sm');
-        $SIDEBAR_MENU.find('li ul').slideUp();
-    }
-
-    $SIDEBAR_MENU.find('a').on('click', function (ev) {
+    $SIDEBAR_MENU.find('a').on('click', function(ev) {
         var $li = $(this).parent();
 
         if ($li.is('.active')) {
             $li.removeClass('active active-sm');
-            $('ul:first', $li).slideUp(function () {
+            $('ul:first', $li).slideUp(function() {
                 setContentHeight();
             });
         } else {
             // prevent closing menu if we are on child menu
             if (!$li.parent().is('.child_menu')) {
-                openUpMenu();
-            } else {
-                if ($BODY.is('nav-sm')) {
-                    if (!$li.parent().is('child_menu')) {
-                        openUpMenu();
-                    }
-                }
+                $SIDEBAR_MENU.find('li').removeClass('active active-sm');
+                $SIDEBAR_MENU.find('li ul').slideUp();
             }
-
+            
             $li.addClass('active');
 
-            $('ul:first', $li).slideDown(function () {
+            $('ul:first', $li).slideDown(function() {
                 setContentHeight();
             });
         }
     });
 
     // toggle small or large menu
-    $MENU_TOGGLE.on('click', function () {
+    $MENU_TOGGLE.on('click', function() {
         if ($BODY.hasClass('nav-md')) {
             $SIDEBAR_MENU.find('li.active ul').hide();
             $SIDEBAR_MENU.find('li.active').addClass('active-sm').removeClass('active');
@@ -79,7 +69,7 @@ function init_sidebar() {
 
         setContentHeight();
 
-        $('.dataTable').each(function () { $(this).dataTable().fnDraw(); });
+        $('.dataTable').each ( function () { $(this).dataTable().fnDraw(); });
     });
 
     // check active menu
@@ -87,12 +77,12 @@ function init_sidebar() {
 
     $SIDEBAR_MENU.find('a').filter(function () {
         return this.href == CURRENT_URL;
-    }).parent('li').addClass('current-page').parents('ul').slideDown(function () {
+    }).parent('li').addClass('current-page').parents('ul').slideDown(function() {
         setContentHeight();
     }).parent().addClass('active');
 
     // recompute content when resizing
-    $(window).smartresize(function () {
+    $(window).smartresize(function(){  
         setContentHeight();
     });
 
@@ -103,27 +93,27 @@ function init_sidebar() {
         $('.menu_fixed').mCustomScrollbar({
             autoHideScrollbar: true,
             theme: 'minimal',
-            mouseWheel: { preventDefault: true }
+            mouseWheel:{ preventDefault: true }
         });
     }
-}
+});
 // /Sidebar
 
 // Panel toolbox
-$(document).ready(function () {
-    $('.collapse-link').on('click', function () {
+$(document).ready(function() {
+    $('.collapse-link').on('click', function() {
         var $BOX_PANEL = $(this).closest('.x_panel'),
             $ICON = $(this).find('i'),
             $BOX_CONTENT = $BOX_PANEL.find('.x_content');
-
+        
         // fix for some div with hardcoded fix class
         if ($BOX_PANEL.attr('style')) {
-            $BOX_CONTENT.slideToggle(200, function () {
+            $BOX_CONTENT.slideToggle(200, function(){
                 $BOX_PANEL.removeAttr('style');
             });
         } else {
-            $BOX_CONTENT.slideToggle(200);
-            $BOX_PANEL.css('height', 'auto');
+            $BOX_CONTENT.slideToggle(200); 
+            $BOX_PANEL.css('height', 'auto');  
         }
 
         $ICON.toggleClass('fa-chevron-up fa-chevron-down');
@@ -138,7 +128,7 @@ $(document).ready(function () {
 // /Panel toolbox
 
 // Tooltip
-$(document).ready(function () {
+$(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip({
         container: 'body'
     });
@@ -146,15 +136,15 @@ $(document).ready(function () {
 // /Tooltip
 
 // Progressbar
-$(document).ready(function () {
-    if ($(".progress .progress-bar")[0]) {
-        $('.progress .progress-bar').progressbar();
-    }
+$(document).ready(function() {
+	if ($(".progress .progress-bar")[0]) {
+	    $('.progress .progress-bar').progressbar();
+	}
 });
 // /Progressbar
 
 // Switchery
-$(document).ready(function () {
+$(document).ready(function() {
     if ($(".js-switch")[0]) {
         var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
         elems.forEach(function (html) {
@@ -167,7 +157,7 @@ $(document).ready(function () {
 // /Switchery
 
 // iCheck
-$(document).ready(function () {
+$(document).ready(function() {
     if ($("input.flat")[0]) {
         $(document).ready(function () {
             $('input.flat').iCheck({
@@ -233,7 +223,7 @@ function countChecked() {
 }
 
 // Accordion
-$(document).ready(function () {
+$(document).ready(function() {
     $(".expand").on("click", function () {
         $(this).next().slideToggle(200);
         $expand = $(this).find(">:first-child");
@@ -252,7 +242,7 @@ if (typeof NProgress != 'undefined') {
         NProgress.start();
     });
 
-    $(window).on('load', function () {
+    $(window).on('load', function() {
         NProgress.done();
     });
 }
