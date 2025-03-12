@@ -1,24 +1,72 @@
-# README
+# Nome do Projeto
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Breve descrição do projeto, o que ele faz e para que serve.
 
-Things you may want to cover:
+## Tecnologias Utilizadas
 
-* Ruby version
+- Ruby 2.7.8
+- Rails 5.2.8.1
+- SQLite3
+- Puma
+- Sass-Rails
+- Uglifier
+- Coffee-Rails
+- Jbuilder
+- Devise
+- Faker
+- Capybara (para testes)
+- Selenium-WebDriver (para testes)
 
-* System dependencies
+## Instalação
 
-* Configuration
+1. Clone este repositório:
+   ```sh
+   git clone https://github.com/seu_usuario/seu_projeto.git
+   ```
 
-* Database creation
+2. Acesse o diretório do projeto:
+   ```sh
+   cd seu_projeto
+   ```
 
-* Database initialization
+3. Instale as dependências:
+   ```sh
+   bundle install
+   ```
 
-* How to run the test suite
+4. Configure o banco de dados:
+   ```sh
+   rails db:migrate
+   ```
 
-* Services (job queues, cache servers, search engines, etc.)
+5. Execute o servidor:
+   ```sh
+   rails server
+   ```
 
-* Deployment instructions
+## Testes
 
-* ...
+Para rodar os testes, utilize:
+```sh
+bundle exec rspec
+```
+
+## Estrutura do Projeto
+
+- `app/` - Contém os arquivos principais da aplicação (controllers, models, views, etc.)
+- `config/` - Configurações do Rails
+- `db/` - Arquivos relacionados ao banco de dados (migrations, schema, seeds)
+- `spec/` - Testes automatizados (caso esteja usando RSpec)
+
+## Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma nova branch (`git checkout -b minha-feature`)
+3. Commit suas alterações (`git commit -m 'Minha nova feature'`)
+4. Faça o push da sua branch (`git push origin minha-feature`)
+5. Abra um Pull Request
+
+## Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
